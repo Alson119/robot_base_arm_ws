@@ -263,7 +263,7 @@
         <child link="link_2"/>
         <origin xyz="0 0.0114 0.075" rpy="0 0 -1.5708"/>
         <axis xyz="1 0 0"/>
-        <limit lower="-1.60" upper="0.38" effort="10" velocity="1"/>
+        <limit lower="-1.60" upper="0.30" effort="10" velocity="1"/>
     </joint>
 
     <!-- switch at -1.25 (lower end) -->
@@ -281,7 +281,7 @@
         <child link="link_4"/>
         <origin xyz="0 0.24 -0.015" rpy="-1.5708 3.14159 0"/>
         <axis xyz="0 1 0"/>
-        <limit lower="-1.54" upper="1.52" effort="10" velocity="1"/>
+        <limit lower="-1.54" upper="1.26" effort="10" velocity="1"/>
     </joint>
 
     <!-- switch at -1.57 (lower end) -->
