@@ -3,7 +3,7 @@
 
     <!--
       Homing reference (real arm resting on all 5 switches), in model radians:
-        base_joint = 0.00   joint_1 = 0.40   joint_2 = -1.25   joint_3 = 1.54   joint_4 = -1.57
+        base_joint = 0.00   joint_1 = 0.40   joint_2 = -1.25   joint_3 = 1.54   joint_4 = -1.415
       Joint limits keep a 0.02 rad (~1 deg) margin inside each switch so MoveIt never
       plans onto a switch. The far-side limits are kept as you set them.
     -->
@@ -284,13 +284,13 @@
         <limit lower="-1.54" upper="1.52" effort="10" velocity="1"/>
     </joint>
 
-    <!-- switch at -1.57 (lower end) -->
+    <!-- switch at -1.415 (lower end) -->
     <joint name="joint_4" type="revolute">
         <parent link="link_4"/>
         <child link="link_5"/>
         <origin xyz="0 0 0.13" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
-        <limit lower="-1.55" upper="3.14" effort="10" velocity="1"/>
+        <limit lower="-1.395" upper="3.14" effort="10" velocity="1"/>
     </joint>
 
     <ros2_control name="real_arm" type="system">
