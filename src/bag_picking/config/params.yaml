@@ -19,7 +19,7 @@ bag_picker:
     base_link: "base_link"
     tool_link: "link_5"
     tcp_offset: 0.085                                # MEASURE: link_5 origin to the middle of the fingertips, metres
-    look_joints: [0.05, 0.35, -1.20, 1.49, -1.52]    # SET: joint angles where the camera looks at the table
+    look_joints: [1.047, 0.279, -0.506, -0.698, 0.000]  # look pose: base 60, joint_1 16, joint_2 -29, joint_3 -40, joint_4 0 deg
     gripper_open: 0.04
     gripper_closed: 0.002
     approach_height: 0.10

@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="final_robot">
+  <!-- Gazebo by default; osca_moveit overrides it with simulated hardware -->
+  <xacro:arg name="hardware_plugin" default="ign_ros2_control/IgnitionSystem"/>
 
   <!-- ======================================================= -->
   <!-- MATERIALS                                               -->
@@ -32,13 +34,35 @@
       </geometry>
       <material name="white"/>
     </visual>
-    <!-- FIXED: Raised in Z (z=0.05) to clear the top of the wheels and prevent collision repulsion -->
-    <collision>
-      <origin xyz="0 0 0.05" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.38 0.38 0.08"/>
-      </geometry>
-    </collision> 
+    <!-- Boxes measured from base_robot.stl. The body starts at z=0.01 to clear the top of the wheels -->
+    <collision> <!-- body -->
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.38 0.38 0.18"/></geometry>
+    </collision>
+    <collision> <!-- top frame -->
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <geometry><box size="0.34 0.34 0.02"/></geometry>
+    </collision>
+    <collision> <!-- arm pad -->
+      <origin xyz="0.105 0 0.2135" rpy="0 0 0"/>
+      <geometry><box size="0.13 0.12 0.007"/></geometry>
+    </collision>
+    <collision> <!-- left post -->
+      <origin xyz="-0.1155 0.16 0.455" rpy="0 0 0"/>
+      <geometry><box size="0.021 0.02 0.49"/></geometry>
+    </collision>
+    <collision> <!-- right post -->
+      <origin xyz="-0.1155 -0.16 0.455" rpy="0 0 0"/>
+      <geometry><box size="0.021 0.02 0.49"/></geometry>
+    </collision>
+    <collision> <!-- crossbar -->
+      <origin xyz="-0.114 0 0.65" rpy="0 0 0"/>
+      <geometry><box size="0.036 0.34 0.1"/></geometry>
+    </collision>
+    <collision> <!-- camera head -->
+      <origin xyz="-0.1315 0 0.78" rpy="0 0 0"/>
+      <geometry><box size="0.079 0.176 0.16"/></geometry>
+    </collision>
     <inertial>
       <mass value="20.0"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -331,7 +355,7 @@
   <joint name="base_joint" type="revolute">
     <parent link="arm_base_link"/>
     <child link="link_1"/>
-    <origin xyz="0 0 0.0615" rpy="0 0 1.025"/>
+    <origin xyz="0 0 0.0615" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit lower="0.02" upper="2.65" effort="50.0" velocity="1.0"/>
     <dynamics damping="5.0" friction="1.0"/>
@@ -672,7 +696,7 @@
   <joint name="camera_joint" type="fixed">
     <parent link="gripper_base"/>
     <child link="camera_link"/>
-    <origin xyz="0.078 0.006 0.070" rpy="0 -1.92 0"/>
+    <origin xyz="0.078 0.006 0.070" rpy="0 -2.16 0"/>
   </joint>
 
   <link name="camera_optical_link"/>
@@ -716,7 +740,7 @@
   <!-- ======================================================= -->
   <ros2_control name="IgnitionSystem" type="system">
     <hardware>
-      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+      <plugin>$(arg hardware_plugin)</plugin>
     </hardware>
     <joint name="base_joint">
       <command_interface name="position"/>

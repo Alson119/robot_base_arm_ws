@@ -72,7 +72,7 @@ class BagPicker(Node):
         p('base_link', 'base_link')
         p('tool_link', 'link_5')              # tip link of the arm group (gripper_base sits at the same spot)
         p('tcp_offset', 0.085)                # metres from tool_link origin to the middle of the fingertips (MEASURE)
-        p('look_joints', [0.05, 0.35, -1.20, 1.49, -1.52])   # PLACEHOLDER: a pose where the camera sees the table
+        p('look_joints', [1.047, 0.279, -0.506, -0.698, 0.000])   # PLACEHOLDER: a pose where the camera sees the table
         p('gripper_open', 0.04)
         p('gripper_closed', 0.002)
         p('approach_height', 0.10)            # metres above the grasp point to start the straight-down move

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="final_robot">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="hardware_plugin" default="mock_components/GenericSystem" />
 
     <!-- Import final_robot urdf file -->
     <xacro:include filename="$(find robot_description)/urdf/final_robot.urdf.xacro" />
